@@ -23,7 +23,7 @@ else {
     $location = Read-Host "Enter the Azure region (AustraliaEast|AustraliaSouthEast) to create resource group"
     Write-Host "Creating Resource Group $RGName in region $location"
     $rgOutput = (az group create --name $RGName --location $location | ConvertFrom-Json)
-    $subsId = $rgOutput.id -split "/")[2]
+    $subsId = ($rgOutput.id -split "/")[2]
 }
 
 if ((az ad sp list --display-name $SPName | ConvertFrom-Json).Count -gt 0) {
